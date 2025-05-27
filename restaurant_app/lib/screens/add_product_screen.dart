@@ -88,11 +88,6 @@ class _AddProductState extends State<AddProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CupertinoColors.systemYellow,
-      // appBar: AppBar(
-      //   title: Text("Add Item to shop"),
-      //   backgroundColor: Colors.yellow,
-      //   leading: IconButton(icon: Icon(Icons.plus_one), onPressed: () {}),
-      // ),
       body: SingleChildScrollView(
         child:
             _isLoading
@@ -184,11 +179,6 @@ class _AddProductState extends State<AddProduct> {
                   ),
                 ),
       ),
-
-      // bottomNavigationBar: AdminNavigationBar(
-      //   selectedIndex: _selectedIndex,
-      //   onItemTapped: _onItemTapped,
-      // ),
     );
   }
 }

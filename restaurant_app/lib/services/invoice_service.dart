@@ -19,15 +19,12 @@ class InvoiceService {
     );
 
     if (response.statusCode == 200) {
-      // Récupérer le répertoire temporaire de stockage
       final dir = await getTemporaryDirectory();
       final filePath = '${dir.path}/invoice_$invoiceId.pdf';
 
-      // Créer le fichier et écrire les bytes
       final file = File(filePath);
       await file.writeAsBytes(response.bodyBytes);
 
-      // Ouvrir le PDF avec une app native
       final result = await OpenFile.open(filePath);
 
       if (result.type != ResultType.done) {
@@ -38,15 +35,3 @@ class InvoiceService {
     }
   }
 }
-
-// ElevatedButton(
-//   onPressed: () async {
-//     try {
-//       final invoiceService = InvoiceService(baseUrl: 'https://tonapi.com/api');
-//       await invoiceService.downloadAndOpenInvoice('12345'); // id de la facture
-//     } catch (e) {
-//       print('Erreur: $e');
-//     }
-//   },
-//   child: Text('Télécharger la facture'),
-// )

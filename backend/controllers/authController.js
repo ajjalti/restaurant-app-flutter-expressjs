@@ -37,8 +37,3 @@ exports.login = async (req, res) => {
         res.status(401).json({ message: 'Email ou mot de passe incorrect' });
     }
 };
-
-exports.getAllUsers = async (req, res) => {
-    const users = await User.find();
-    res.json(users);
-};

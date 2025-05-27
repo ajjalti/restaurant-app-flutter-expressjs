@@ -82,7 +82,7 @@ class ProductCardWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Text(
-                  "${product.price.toStringAsFixed(0)} DH", // <-- Prix dynamique
+                  "${product.price.toStringAsFixed(0)} DH",
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,

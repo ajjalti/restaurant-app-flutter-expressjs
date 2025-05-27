@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:restaurant_app/models/product.dart';
-import 'package:restaurant_app/services/message_service.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;

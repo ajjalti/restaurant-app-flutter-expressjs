@@ -28,15 +28,4 @@ class Order {
       status: json['status'] as String,
     );
   }
-
-  // Convertir un Order en JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'products': products.map((p) => p.toJson()).toList(),
-      'totalAmount': totalAmount,
-      'date': date.toIso8601String(),
-      'status': status,
-    };
-  }
 }

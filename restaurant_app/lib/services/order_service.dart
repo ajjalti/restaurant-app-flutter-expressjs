@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:restaurant_app/dtos/order_request_dto.dart';
-import 'package:restaurant_app/models/order.dart';
 import 'package:restaurant_app/services/invoice_service.dart';
 import 'package:restaurant_app/services/user_service.dart';
 import 'package:http/http.dart' as http;

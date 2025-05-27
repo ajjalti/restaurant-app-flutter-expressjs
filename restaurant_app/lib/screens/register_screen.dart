@@ -196,9 +196,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                           ),
                         ),
-                        // SizedBox(height: 25),
-                        // Icon(Icons.add_box_outlined),
-                        // SizedBox(height: 10),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);

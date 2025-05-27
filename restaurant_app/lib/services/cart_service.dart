@@ -1,4 +1,3 @@
-// lib/services/cart_service.dart
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/models/product.dart';
 

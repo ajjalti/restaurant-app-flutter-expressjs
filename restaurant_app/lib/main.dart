@@ -47,8 +47,6 @@ class MyApp extends StatelessWidget {
         '/register':
             (context) => RegisterScreen(messageService: messageService),
         '/products': (context) => ProductsPage(messageService: messageService),
-        // '/productDetails':
-        // (context) => ProductDetailsScreen(messageService: messageService),
         '/addProduct': (context) => AddProduct(messageService: messageService),
         '/profile': (context) => ProfileScreen(messageService: messageService),
       },

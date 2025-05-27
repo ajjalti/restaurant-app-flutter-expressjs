@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/models/product.dart';
 import 'package:restaurant_app/services/message_service.dart';
 import 'package:restaurant_app/services/product_service.dart';
 import 'package:restaurant_app/widgets/product_card_widget.dart';

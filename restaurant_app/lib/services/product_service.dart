@@ -10,7 +10,6 @@ import 'package:path/path.dart';
 class ProductService {
   final String baseUrl = "${dotenv.env['API_BASE_URL']}/api/products";
 
-  // 🔍 Lire tous les produits
   Future<List<Product>?> getAllProducts() async {
     final UserService userService = UserService();
     final String? token = await userService.getToken();
@@ -29,7 +28,6 @@ class ProductService {
     }
   }
 
-  // ➕ Créer un produit
   Future<Product?> createProduct(
     ProductRequestDto product,
     File imageFile,
@@ -44,7 +42,7 @@ class ProductService {
     // Ajouter le fichier
     request.files.add(
       await http.MultipartFile.fromPath(
-        'image', // clé attendue par ton backend pour le fichier
+        'image',
         imageFile.path,
         filename: basename(imageFile.path),
       ),

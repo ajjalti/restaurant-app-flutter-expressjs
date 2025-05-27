@@ -17,11 +17,6 @@ exports.createOrder = async (req, res) => {
     res.status(201).json(order);
 };
 
-exports.getOrders = async (req, res) => {
-    const orders = await Order.find().populate('user').populate('products.product');
-    res.json(orders);
-};
-
 exports.generateInvoice = async (req, res) => {
   try {
     const orderId = req.params.id;

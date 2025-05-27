@@ -1,4 +1,3 @@
-// lib/screens/profile_screen.dart
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/services/message_service.dart';
 import 'package:restaurant_app/services/user_service.dart';
@@ -11,11 +10,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final UserService userService = UserService();
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Profile"),
-      //   backgroundColor: Colors.blueAccent,
-      //   centerTitle: true,
-      // ),
       body: Center(
         child: Column(
           children: [
@@ -40,17 +34,6 @@ class ProfileScreen extends StatelessWidget {
               style: TextStyle(color: Colors.grey),
             ),
             SizedBox(height: 30),
-            // ElevatedButton(
-            //   onPressed: () {},
-            //   style: ElevatedButton.styleFrom(
-            //     backgroundColor: Colors.redAccent,
-            //     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(30),
-            //     ),
-            //   ),
-            //   child: Text("Logout"),
-            // ),
           ],
         ),
       ),

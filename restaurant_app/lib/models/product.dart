@@ -24,14 +24,4 @@ class Product {
       imageUrl: json['imageUrl'] as String,
     );
   }
-
-  // Convertir un Product en JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'description': description,
-      'price': price,
-      'imageUrl': imageUrl,
-    };
-  }
 }

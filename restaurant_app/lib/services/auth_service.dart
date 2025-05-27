@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:restaurant_app/dtos/auth_dto.dart';
 import 'package:restaurant_app/services/user_service.dart';
 import '../models/user.dart';
 import '../dtos/login_dto.dart';
