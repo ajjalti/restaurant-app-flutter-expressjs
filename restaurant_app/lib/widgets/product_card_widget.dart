@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/models/product.dart';
 import 'package:restaurant_app/screens/product_details_screen.dart';
 import 'package:restaurant_app/services/cart_service.dart';
+import 'package:restaurant_app/services/message_service.dart';
+import 'package:restaurant_app/services/product_service.dart';
 import 'package:restaurant_app/services/user_service.dart';
 
 class ProductCardWidget extends StatelessWidget {
@@ -43,16 +45,38 @@ class ProductCardWidget extends StatelessWidget {
         child: Stack(
           children: [
             Center(
-              child: Image.network(
-                "${baseUrl}${product.imageUrl}",
-                height: 125,
-                width: 125,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Image.network(
+                        "${baseUrl}${product.imageUrl}",
+                        height: 100,
+                        width: 125,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        product.name, // <-- Nom dynamique
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             if (!isAdmin)
               Positioned(
-                top: 5,
-                right: 5,
+                top: 0,
+                right: 0,
                 child: IconButton(
                   icon: const Icon(Icons.add_shopping_cart_outlined),
                   onPressed: () {
@@ -61,20 +85,8 @@ class ProductCardWidget extends StatelessWidget {
                 ),
               ),
             Positioned(
-              bottom: 10,
-              left: 10,
-              child: Text(
-                product.name, // <-- Nom dynamique
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 10,
-              right: 10,
+              bottom: 5,
+              right: 5,
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: const BoxDecoration(

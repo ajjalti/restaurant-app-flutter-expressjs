@@ -2,7 +2,6 @@ const Order = require('../models/Order');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
-const Product = require('../models/Product');
 
 exports.createOrder = async (req, res) => {
     const { products, total } = req.body;
@@ -68,6 +67,11 @@ exports.generateInvoice = async (req, res) => {
     }
   }
 };
+
+exports.getAllOrders = async (req,res)=>{
+      const orders = await Order.find().populate('products.product').populate('user');
+      res.status(200).json(orders);
+}
 
 
 

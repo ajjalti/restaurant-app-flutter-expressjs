@@ -4,6 +4,7 @@ import 'package:restaurant_app/dtos/order_request_dto.dart';
 import 'package:restaurant_app/models/product.dart';
 import 'package:restaurant_app/screens/add_product_screen.dart';
 import 'package:restaurant_app/screens/home_screen.dart';
+import 'package:restaurant_app/screens/orders_history_screen.dart';
 import 'package:restaurant_app/screens/products_screen.dart';
 import 'package:restaurant_app/screens/profile_screen.dart';
 import 'package:restaurant_app/services/message_service.dart';
@@ -120,6 +121,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
               HomePage(),
               ProductsPage(messageService: widget.messageService),
               AddProduct(messageService: widget.messageService),
+              OrdersHistoryScreen(),
               ProfileScreen(messageService: widget.messageService),
             ]
             : [

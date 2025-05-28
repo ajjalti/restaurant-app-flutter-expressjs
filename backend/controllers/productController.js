@@ -38,3 +38,8 @@ exports.getAllProducts = async (req, res) => {
     const products = await Product.find();
     res.json(products);
 };
+
+exports.deleteById = async (req,res)=>{
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(200);
+}

@@ -61,4 +61,17 @@ class ProductService {
       return null;
     }
   }
+
+  Future<Null> deleteById(String productId) async {
+    final UserService userService = UserService();
+    final String? token = await userService.getToken();
+    final uri = Uri.parse('${baseUrl}/${productId}');
+    await http.delete(
+      uri,
+      headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
+  }
 }
