@@ -12,8 +12,8 @@ class NavBar extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: onTap,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
+        BottomNavigationBarItem(icon: Icon(Icons.list), label: 'list'),
+        BottomNavigationBarItem(icon: Icon(Icons.history), label: 'My Orders'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
       selectedItemColor: Colors.black,

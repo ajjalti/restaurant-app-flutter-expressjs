@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/enums/order-status-type.dart';
-import 'package:restaurant_app/models/order.dart';
 import 'package:restaurant_app/services/order_service.dart';
+import 'package:restaurant_app/services/user_service.dart';
 
-class OrdersHistoryScreen extends StatefulWidget {
-  OrdersHistoryScreen({super.key});
+class ClientOrdersScreen extends StatefulWidget {
+  const ClientOrdersScreen({super.key});
 
   @override
-  State<OrdersHistoryScreen> createState() => _OrdersHistoryScreenState();
+  State<ClientOrdersScreen> createState() => _ClientOrdersScreenState();
 }
 
-class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
+class _ClientOrdersScreenState extends State<ClientOrdersScreen> {
   late List<dynamic> orders = [];
   final OrderService _orderService = OrderService();
+  final UserService _userService = UserService();
+
   bool _isLoading = true;
   @override
   void initState() {
@@ -20,18 +22,9 @@ class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
     loadOrders();
   }
 
-  void _confirmOrder(dynamic orderId) async {
-    setState(() {
-      _isLoading = true;
-    });
-    await _orderService.confirmOrder(orderId);
-    setState(() {
-      loadOrders();
-    });
-  }
-
   void loadOrders() async {
-    final data = await _orderService.getAllOrders();
+    final clientId = _userService.getId();
+    final data = await _orderService.findAllByClientId(clientId);
     setState(() {
       orders = data;
       _isLoading = false;
@@ -43,13 +36,13 @@ class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: 25),
-          Text(
-            "Orders history list",
+          const SizedBox(height: 25),
+          const Text(
+            "My Orders",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           _isLoading
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : Expanded(
                 child: ListView.builder(
                   itemCount: orders.length,
@@ -76,14 +69,17 @@ class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
                                   "Date: ${order.date.toLocal().toString().split(' ')[0]}",
                                   style: TextStyle(fontSize: 14),
                                 ),
+                                Text(
+                                  "${order.status}",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color:
+                                        order.status == "Confirmed"
+                                            ? Colors.green
+                                            : Colors.blue,
+                                  ),
+                                ),
                               ],
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              "Client name : ${order.user['name']}",
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
                             ),
                             const SizedBox(height: 8),
                             const Text(
@@ -124,39 +120,6 @@ class _OrdersHistoryScreenState extends State<OrdersHistoryScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 8),
-                            if (order.status == "Pending")
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      _confirmOrder(order.id);
-                                    },
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(Icons.done, color: Colors.green),
-                                        SizedBox(width: 4),
-                                        Text(
-                                          'Approve this order',
-                                          style: TextStyle(color: Colors.green),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            if (order.status == "Confirmed")
-                              Center(
-                                child: Text(
-                                  "Order confirmed",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.green,
-                                  ),
-                                ),
-                              ),
                           ],
                         ),
                       ),

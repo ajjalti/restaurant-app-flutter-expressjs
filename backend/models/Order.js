@@ -7,6 +7,11 @@ const orderSchema = new mongoose.Schema({
         quantity: Number
     }],
     total: Number,
+      status: {
+    type: String,
+    enum: ['Pending', 'Confirmed'],
+    default: 'Pending'
+  },
     createdAt: { type: Date, default: Date.now }
 });
 

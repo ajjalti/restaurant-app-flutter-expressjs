@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:restaurant_app/dtos/order_request_dto.dart';
+import 'package:restaurant_app/dtos/order_status_dto.dart';
 import 'package:restaurant_app/models/order.dart';
 import 'package:restaurant_app/services/invoice_service.dart';
 import 'package:restaurant_app/services/user_service.dart';
@@ -51,6 +52,51 @@ class OrderService {
       return data.map((json) => Order.fromJson(json)).toList();
     } else {
       return [];
+    }
+  }
+
+  Future<dynamic> findAllByClientId(String? clientId) async {
+    final UserService userService = UserService();
+    final String? token = await userService.getToken();
+    final uri = Uri.parse('$baseUrl/findByClientId/$clientId');
+
+    final response = await http.post(
+      uri,
+      headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((json) => Order.fromJson(json)).toList();
+    } else {
+      print("Erreur lors de la récupération des commandes: ${response.body}");
+      return [];
+    }
+  }
+
+  Future<Order?> confirmOrder(dynamic orderId) async {
+    final UserService userService = UserService();
+    final String? token = await userService.getToken();
+    final uri = Uri.parse('$baseUrl/changeStatus/$orderId');
+
+    final response = await http.get(
+      uri,
+      headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      print("confirmed order ${response.body}");
+      return Order.fromJson(json);
+    } else {
+      print('Erreur de mise à jour du statut : ${response.body}');
+      return null;
     }
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/dtos/order_request_dto.dart';
 import 'package:restaurant_app/models/product.dart';
 import 'package:restaurant_app/screens/add_product_screen.dart';
+import 'package:restaurant_app/screens/client_orders_screen.dart';
 import 'package:restaurant_app/screens/home_screen.dart';
 import 'package:restaurant_app/screens/orders_history_screen.dart';
 import 'package:restaurant_app/screens/products_screen.dart';
@@ -125,8 +126,9 @@ class _LayoutScreenState extends State<LayoutScreen> {
               ProfileScreen(messageService: widget.messageService),
             ]
             : [
-              HomePage(),
+              // HomePage(),
               ProductsPage(messageService: widget.messageService),
+              ClientOrdersScreen(),
               ProfileScreen(messageService: widget.messageService),
             ];
     return Scaffold(

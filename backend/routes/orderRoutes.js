@@ -4,6 +4,8 @@ const orderController = require('../controllers/orderController');
 const { protect } = require('../middleware/authMiddleware');
 
 router.post('/', protect, orderController.createOrder);
+router.get('/changeStatus/:orderId', protect, orderController.changeOrderStatus);
+router.post('/findByClientId/:clientId',protect,orderController.findByClientId);
 router.get('/', protect, orderController.getAllOrders);
 router.get('/:id/invoice',protect,orderController.generateInvoice);
 module.exports = router;
