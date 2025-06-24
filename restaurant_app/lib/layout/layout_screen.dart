@@ -103,12 +103,12 @@ class _LayoutScreenState extends State<LayoutScreen> {
         _isLoading = false;
       });
       _cartService.clearCart();
-      widget.messageService.showSuccess("Your order was confirmed !");
+      widget.messageService.showSuccess("Your order was created !");
     } else {
       setState(() {
         _isLoading = false;
       });
-      widget.messageService.showError("Order confirmation failed !");
+      widget.messageService.showError("Order creation failed !");
     }
   }
 
